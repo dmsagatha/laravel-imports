@@ -26,7 +26,7 @@
             </div>
 
             <div class="mt-4 flex items-center">
-              <x-label for="header" value="El archivo contiene encabezados" />
+              <x-label for="header" value="El archivo contiene encabezados?" />
 
               <x-input id="header" class="ml-1" type="checkbox" name="header" checked />
             </div>
