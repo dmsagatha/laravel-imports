@@ -48,8 +48,8 @@
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                       <select name="fields[{{ $key }}]">
                         @foreach (config('app.db_fields') as $db_field)
-                        <option value="{{ (\Request::has('header')) ? $db_field : $loop->index }}" @if ($key===$db_field)
-                          selected @endif>{{ $db_field }}</option>
+                          <option value="{{ (\Request::has('header')) ? $db_field : $loop->index }}" @if ($key===$db_field)
+                            selected @endif>{{ $db_field }}</option>
                         @endforeach
                       </select>
                     </td>
@@ -62,7 +62,6 @@
               {{ __('Submit') }}
             </x-button>
           </form>
-
         </div>
       </div>
     </div>

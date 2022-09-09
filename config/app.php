@@ -216,5 +216,11 @@ return [
       'name',
       'email',
       'password'
-  ]
+    ],
+
+    'fields_cars' => [
+      'name',
+      'email',
+      'password'
+    ]
 ];

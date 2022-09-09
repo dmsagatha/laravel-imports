@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class ImportController extends Controller
 {
@@ -82,6 +83,24 @@ class ImportController extends Controller
           'email'    => $row['email'],
           'name'     => $row['name'],
           'password' => $row['password'],
+        ]
+      ); 
+    }
+
+    return to_route('import')->with('success', 'Importación finalizada.');
+  }
+
+  public function processImportCategories(Request $request)
+  {
+    $data     = CsvData::find($request->csv_data_file_id);
+    $csv_data = json_decode($data->csv_data, true);   // Resultado de matriz
+
+    // Validaciones de los campos únicos
+    foreach ($csv_data as $row) {
+      Category::updateOrCreate(
+        ['namecat' => $row['namecat']],
+        [
+          'namecat'    => $row['namecat']
         ]
       ); 
     }
