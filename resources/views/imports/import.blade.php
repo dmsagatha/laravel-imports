@@ -14,18 +14,18 @@
 
           <x-alert.success></x-alert.success>
 
-          <x-validation-errors class="mb-4" :errors="$errors" />
+          {{-- <x-validation-errors class="mb-4" :errors="$errors" /> --}}
 
           <form action="{{ route('import_parse') }}" method="POST" class="mb-4" enctype="multipart/form-data">
             @csrf
 
-            <div>
-              <x-label for="csv_file" value="Archivo Css para importar" />
+            <div class="form-group">
+              <x-label for="csv_file" value="Archivo Css para importar" class="required" />
 
-              <x-input id="csv_file" class="block mt-1 w-full" type="file" name="csv_file" required />
+              <x-input id="csv_file" class="block mt-1 w-full" type="file" name="csv_file" />
             </div>
 
-            <div class="mt-4 flex items-center">
+            <div class="mt-4 flex items-center form-group">
               <x-label for="header" value="El archivo contiene encabezados?" />
 
               <x-input id="header" class="ml-1" type="checkbox" name="header" checked />
