@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Contacts') }} -
+      {{ __('Users') }} -
       <a href="https://github.com/LaravelDaily/Laravel-8-Import-CSV">LaravelDaily/Laravel-8-Import-CSV</a> -
       <a href="https://www.youtube.com/watch?v=qmmnFe_IfKc">Video</a>
     </h2>
@@ -20,13 +20,13 @@
             @csrf
 
             <div>
-              <x-label for="csv_file" :value="__('CSV file to import')" />
+              <x-label for="csv_file" value="Archivo Css para importar" />
 
               <x-input id="csv_file" class="block mt-1 w-full" type="file" name="csv_file" required />
             </div>
 
             <div class="mt-4 flex items-center">
-              <x-label for="header" :value="__('File contains header row?')" />
+              <x-label for="header" value="El archivo contiene encabezados" />
 
               <x-input id="header" class="ml-1" type="checkbox" name="header" checked />
             </div>
