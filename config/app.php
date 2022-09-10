@@ -212,15 +212,15 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
-    'db_fields' => [
+    'fields_users' => [
       'name',
+      'car_id',
       'email',
-      'password'
+      'password',
     ],
 
-    'fields_cars' => [
-      'name',
-      'email',
-      'password'
+    'fields_categories' => [
+      'namecat',
+      'description'
     ]
 ];

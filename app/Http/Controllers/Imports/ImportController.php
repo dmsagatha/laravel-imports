@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Category;
 
 class ImportController extends Controller
@@ -58,7 +59,7 @@ class ImportController extends Controller
     ]);
   }
 
-  public function processImport(Request $request)
+  public function importUsers(Request $request)
   {
     $data     = CsvData::find($request->csv_data_file_id);
     $csv_data = json_decode($data->csv_data, true);   // Resultado de matriz
@@ -80,6 +81,7 @@ class ImportController extends Controller
       User::updateOrCreate(
         ['email' => $row['email']],
         [
+          'car_id'   => $row['car_id'],
           'email'    => $row['email'],
           'name'     => $row['name'],
           'password' => $row['password'],
@@ -90,7 +92,7 @@ class ImportController extends Controller
     return to_route('import')->with('success', 'Importación finalizada.');
   }
 
-  public function processImportCategories(Request $request)
+  public function importCategories(Request $request)
   {
     $data     = CsvData::find($request->csv_data_file_id);
     $csv_data = json_decode($data->csv_data, true);   // Resultado de matriz
@@ -100,7 +102,8 @@ class ImportController extends Controller
       Category::updateOrCreate(
         ['namecat' => $row['namecat']],
         [
-          'namecat'    => $row['namecat']
+          'namecat'     => $row['namecat'],
+          'description' => $row['description']
         ]
       ); 
     }

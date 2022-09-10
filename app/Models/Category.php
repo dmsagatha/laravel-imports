@@ -9,5 +9,10 @@ class Category extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['namecat'];
+  protected $fillable = ['namecat', 'description'];
+
+  const FIELD_DATA = [
+    'namecat',
+    'description',
+  ];
 }

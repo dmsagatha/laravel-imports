@@ -12,7 +12,7 @@
 
           <x-validation-errors class="mb-4" :errors="$errors" />
 
-          <form action="{{ route('import_process') }}" method="POST">
+          <form action="{{ route('import.categories') }}" method="POST">
             @csrf
 
             <x-input type="hidden" name="csv_data_file_id" value="{{ $csv_data_file->id }}" />
@@ -22,7 +22,6 @@
                 <thead>
                   <tr>
                     @foreach ($headings[0][0] as $csv_header_field)
-                      {{-- @dd($headings)--}}
                       <th class="px-6 py-3 bg-gray-50">
                         <span class="text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{
                           $csv_header_field }}</span>
@@ -46,8 +45,14 @@
                 <tr>
                   @foreach ($csv_data[0] as $key => $value)
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                      {{-- <select name="fields[{{ $key }}]">
+                        @foreach (config('app.fields_categories') as $db_field)
+                          <option value="{{ (\Request::has('header')) ? $db_field : $loop->index }}" @if ($key===$db_field)
+                            selected @endif>{{ $db_field }}</option>
+                        @endforeach
+                      </select> --}}
                       <select name="fields[{{ $key }}]">
-                        @foreach (config('app.db_fields') as $db_field)
+                        @foreach (App\Models\Category::FIELD_DATA as $db_field)
                           <option value="{{ (\Request::has('header')) ? $db_field : $loop->index }}" @if ($key===$db_field)
                             selected @endif>{{ $db_field }}</option>
                         @endforeach
@@ -62,6 +67,10 @@
               {{ __('Submit') }}
             </x-button>
           </form>
+
+          {{-- <x-importData
+            importModel='import_process'
+          /> --}}
         </div>
       </div>
     </div>

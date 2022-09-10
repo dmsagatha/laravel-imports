@@ -14,7 +14,7 @@
 
           <x-alert.success></x-alert.success>
 
-          {{-- <x-validation-errors class="mb-4" :errors="$errors" /> --}}
+          <x-validation-errors class="mb-4" :errors="$errors" />
 
           <form action="{{ route('import_parse') }}" method="POST" class="mb-4" enctype="multipart/form-data">
             @csrf

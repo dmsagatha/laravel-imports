@@ -16,10 +16,17 @@ Route::get('/dashboard', function () {
  * Revisar: Laravel Excel: Import with Relationships
  * https://www.youtube.com/watch?v=n2WOag1G7Zg
  */
-Route::controller(ImportController::class)->group(function () {
-  Route::get('/daily-usuarios', 'getImport')->name('import');
-  Route::post('/import_parse', 'parseImport')->name('import_parse');
-  Route::post('/import_process', 'processImport')->name('import_process');
-});
+Route::group([
+    'prefix'    => 'importar'
+  ],
+  function () {
+    Route::controller(ImportController::class)->group(function () {
+      Route::get('/', 'getImport')->name('import');
+      Route::post('/analizar-datos', 'parseImport')->name('import_parse');
+      Route::post('/usuarios', 'importUsers')->name('import.users');
+      Route::post('/categorias', 'importCategories')->name('import.categories');
+    });
+  }
+);
 
 require __DIR__.'/auth.php';
